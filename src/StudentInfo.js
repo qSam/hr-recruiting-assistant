@@ -35,7 +35,12 @@ class StudentInfo extends Component {
   }
 
   render() {
-    
+
+    var userOne = "User One";
+    var userTwo = "User Two";
+    var userThree = "User Three";
+    var userFour = "User Four";
+
     return (
       <div>
       <form onSubmit={this.handleSubmit} className="text-center">
@@ -50,48 +55,48 @@ class StudentInfo extends Component {
         <div className="row">
         <div className="border col-xs-3">
         <label>
-          User 1 Score
+          {userOne} Score
           <select name="scoresOne">
-             <option value="1">1 - Not recommended at all</option>
+             <option value="1">1</option>
              <option value="2">2</option>
              <option value="3">3</option>
-             <option value="4">4 - Highly rocommended</option>
+             <option value="4">4</option>
            </select>
         </label>
         <br />
         </div>
         <div className="border col-xs-3">
         <label>
-          User 2 Score
+          {userTwo} Score
           <select name="scoresTwo">
-          <option value="1">1 - Not recommended at all</option>
+          <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
-          <option value="4">4 - Highly rocommended</option>
+          <option value="4">4</option>
            </select>
         </label>
         <br />
         </div>
         <div className="border col-xs-3">
         <label>
-          User 3 Score
+          {userThree} Score
           <select name="scoresThree">
-          <option value="1">1 - Not recommended at all</option>
+          <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
-          <option value="4">4 - Highly rocommended</option>
+          <option value="4">4</option>
            </select>
         </label>
         <br />
         </div>
         <div className="border col-xs-3">
         <label>
-          User 4 Score
+          {userFour} Score
           <select name="scoresFour">
-          <option value="1">1 - Not recommended at all</option>
+          <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
-          <option value="4">4 - Highly rocommended</option>
+          <option value="4">4</option>
            </select>
         </label>
         <br />
