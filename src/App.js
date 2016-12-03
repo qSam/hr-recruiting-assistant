@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import StudentInfo from './StudentInfo';
+import UserInfo from './Users';
 
 import './App.css';
 
 class App extends Component {
 
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      showStudentInfo: false,
+      showUserInfo: true
+    }
+  }
 
   render() {
     return (
@@ -15,7 +22,8 @@ class App extends Component {
         </div>
         <p className="App-intro">
         </p>
-        <StudentInfo />
+        { this.state.showUserInfo ? <UserInfo /> : null }
+        { this.state.showStudentInfo ? <StudentInfo /> : null }
       </div>
 
     );
