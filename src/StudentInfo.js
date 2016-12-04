@@ -34,12 +34,30 @@ class StudentInfo extends Component {
      event.preventDefault();
   }
 
+  renderUser(userName, scoreSelector) {
+    return (
+      <div className="border col-xs-3">
+      <label>
+        {userName} Score
+        <select name={scoreSelector}>
+           <option value="1">1</option>
+           <option value="2">2</option>
+           <option value="3">3</option>
+           <option value="4">4</option>
+         </select>
+      </label>
+      <br />
+      </div>
+    );
+  }
+
   render() {
 
-    var userOne = "User One";
-    var userTwo = "User Two";
-    var userThree = "User Three";
-    var userFour = "User Four";
+    console.log(this.props.users);
+    var userOne = this.props.users[0];
+    var userTwo = this.props.users[1];
+    var userThree = this.props.users[2];
+    var userFour = this.props.users[3];
 
     return (
       <div>
@@ -53,54 +71,10 @@ class StudentInfo extends Component {
         </fieldset>
 
         <div className="row">
-        <div className="border col-xs-3">
-        <label>
-          {userOne} Score
-          <select name="scoresOne">
-             <option value="1">1</option>
-             <option value="2">2</option>
-             <option value="3">3</option>
-             <option value="4">4</option>
-           </select>
-        </label>
-        <br />
-        </div>
-        <div className="border col-xs-3">
-        <label>
-          {userTwo} Score
-          <select name="scoresTwo">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-           </select>
-        </label>
-        <br />
-        </div>
-        <div className="border col-xs-3">
-        <label>
-          {userThree} Score
-          <select name="scoresThree">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-           </select>
-        </label>
-        <br />
-        </div>
-        <div className="border col-xs-3">
-        <label>
-          {userFour} Score
-          <select name="scoresFour">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-           </select>
-        </label>
-        <br />
-        </div>
+        {this.renderUser(userOne, "scoresOne")}
+        {this.renderUser(userTwo, "scoresTwo")}
+        {this.renderUser(userThree, "scoresThree")}
+        {this.renderUser(userFour, "scoresFour")}
         </div>
         <br />
         <input className="btn btn-primary btn-md" type="submit" value="Add Student Scores" />

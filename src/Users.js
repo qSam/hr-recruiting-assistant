@@ -6,84 +6,87 @@ class UserInfo extends Component {
   constructor(props){
     super(props);
     this.state = {
-      userCounter: 1,
-      userArray: [1],
+      userArray: ["","","",""],
       showUserForm: true,
-      showStudentInfo: false
+      showStudentInfo: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleAddClick = this.handleAddClick.bind(this);
-    this.handleSubtractClick = this.handleSubtractClick.bind(this);
+    this.handleChangeUserOne = this.handleChangeUserOne.bind(this);
+    this.handleChangeUserTwo = this.handleChangeUserTwo.bind(this);
+    this.handleChangeUserThree = this.handleChangeUserThree.bind(this);
+    this.handleChangeUserFour = this.handleChangeUserFour.bind(this);
   }
 
   handleSubmit(event){
 
-    console.log(event);
-    console.log(this);
+    this.setState({
+      showUserForm: false,
+      showStudentInfo: true
+    });
+    console.log(this.state.userArray);
+
     event.preventDefault();
   }
 
-  handleAddClick(event){
 
-    let newCounter = this.state.userCounter;
-    let newUserArray = [];
-    newCounter++;
+  handleChangeUserOne(event) {
+    var newArray  = this.state.userArray.slice();
+    newArray[0] = event.target.value;
+    this.setState({userArray:newArray});
+  }
 
-    for (var i = 1; i <= newCounter; i++){
-      newUserArray.push(i);
+  handleChangeUserTwo(event) {
+      var newArray  = this.state.userArray.slice();
+      newArray[1] = event.target.value;
+      this.setState({userArray:newArray});
+  }
+
+
+    handleChangeUserThree(event) {
+        var newArray  = this.state.userArray.slice();
+        newArray[2] = event.target.value;
+        this.setState({userArray:newArray});
     }
 
-    this.setState({
-        userCounter : newCounter,
-        userArray: newUserArray,
-        showStudentInfo: true
-    });
 
-
-
-    event.preventDefault();
-  }
-
-  handleSubtractClick(event) {
-    let newCounter = this.state.userCounter;
-    let newUserArray = [];
-    newCounter--;
-
-    for (var i = 1; i <= newCounter; i++){
-      newUserArray.push(i);
-    }
-
-    this.setState({
-        userCounter : newCounter,
-        userArray: newUserArray
-    });
-
-
-
-    event.preventDefault();
-
-  }
+    handleChangeUserFour(event) {
+          var newArray  = this.state.userArray.slice();
+          newArray[3] = event.target.value;
+          this.setState({userArray:newArray});
+      }
 
   renderUsers(){
-    return this.state.userArray.map( (user) => {
         return (
-          <div key={user }>
+          <div >
             <fieldset className="form-group">
             <label>
-              User Name <input key={user} type="text" className="form-control"  />
+              User Name One <input type="text" value={this.state.userArray[0]} className="form-control" onChange={this.handleChangeUserOne} />
+            </label>
+          </fieldset>
+            <fieldset className="form-group">
+            <label>
+              User Name Two <input type="text" value={this.state.userArray[1]} className="form-control" onChange={this.handleChangeUserTwo} />
+            </label>
+          </fieldset>
+            <fieldset className="form-group">
+            <label>
+              User Name Three <input type="text" value={this.state.userArray[2]} className="form-control" onChange={this.handleChangeUserThree} />
+            </label>
+          </fieldset>
+            <fieldset className="form-group">
+            <label>
+              User Name Four <input type="text" value={this.state.userArray[3]} className="form-control" onChange={this.handleChangeUserFour} />
             </label>
           </fieldset>
           </div>
-        )
-    });
+        );
   }
 
   renderUserForm() {
     return (
       <div>
           <form onSubmit={this.handleSubmit} >
-              Add more users <button type="button" className="btn btn-default btn-circle" onClick={this.handleAddClick} ><i className="fa fa-plus"></i></button><button type="button" className="btn btn-default btn-circle" onClick={this.handleSubtractClick} ><i className="fa fa-minus"></i></button>
               {this.renderUsers()}
               <input className="btn btn-primary btn-sm" type="submit" value="Begin" />
           </form>
@@ -95,7 +98,7 @@ class UserInfo extends Component {
     return(
       <div>
         {this.state.showUserForm ? this.renderUserForm() : null }
-        { this.state.showStudentInfo ? <StudentInfo /> : null }
+        { this.state.showStudentInfo ? <StudentInfo users={this.state.userArray} /> : null }
       </div>
     );
   }
